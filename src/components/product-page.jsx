@@ -45,7 +45,7 @@ export default function ProductPage() {
         // }
 
 
-        const resp = await PAGE_URL.get(`/get-page-info?page_id=${pageId}`);
+        const resp = await PAGE_URL.get(`/get-page-info?page_id=de36400b-cc6a-4d11-9a6a-f8d304e16a56`);
         const result = resp.data.result;
         console.log(PAGE_URL);
         console.log(pageId);
