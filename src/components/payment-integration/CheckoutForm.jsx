@@ -76,7 +76,8 @@ const CheckoutForm = ({ amount = 0.01, productId, product_title, quantity = 1, v
               customerEmail,
               customerName,
               shippingAddress,
-              billingAddress
+              billingAddress,
+              event
             });
           }
         } catch (error) {
