@@ -74,7 +74,7 @@ export default function ProductPage() {
 
     };
 
-    if (!isValidUUID.test(pageId)) {
+    if (!isValidUUID.test('de36400b-cc6a-4d11-9a6a-f8d304e16a56')) {
         navigate('/not-found'); // Redirect to "Not Found" page
         return;
     }

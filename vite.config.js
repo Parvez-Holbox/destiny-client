@@ -9,7 +9,7 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0', // Bind to all network interfaces
-    port: 3000,        // Optional: Specify a port (default is 3000)
+    port: 3001,        // Optional: Specify a port (default is 3000)
     // Optional: If you encounter issues with HTTPS
     // https: false,
   },

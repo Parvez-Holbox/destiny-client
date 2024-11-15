@@ -8,15 +8,14 @@ export default function App() {
   console.log("working");
   
   return (
-    // <Router>
-    //     <Routes>
-    //         {/* Define a route with a dynamic parameter */}
-    //         <Route path="/:templateId/:pageId" element={<ProductPage />} />
-    //         <Route path="/not-found" element={<NotFound />} />
-    //         <Route path="*" element={<NotFound />} />
-    //     </Routes>
-    // </Router>
-    <ProductPage />
+    <Router>
+        <Routes>
+            {/* Define a route with a dynamic parameter */}
+            <Route path="/" element={<ProductPage />} />
+            <Route path="/not-found" element={<NotFound />} />
+            {/* <Route path="*" element={<NotFound />} /> */}
+        </Routes>
+    </Router>
   );
 
 }
