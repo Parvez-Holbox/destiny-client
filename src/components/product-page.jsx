@@ -47,7 +47,10 @@ export default function ProductPage() {
 
         const resp = await PAGE_URL.get(`/get-page-info?page_id=${pageId}`);
         const result = resp.data.result;
-
+        console.log(PAGE_URL);
+        console.log(pageId);
+        
+        
         if (result.data === null) {
             navigate('/not-found'); // Redirect to "Not Found" page
             return;
