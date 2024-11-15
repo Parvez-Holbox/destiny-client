@@ -39,46 +39,11 @@ const CheckoutForm = ({ amount = 0.01, productId, product_title, quantity = 1, v
       // Handle payment method event
       pr.on('paymentmethod', async (event) => {
         try {
-
-
-          // Extract payer's name and email
-          const payerName = event.payerName; // { givenName: 'John', familyName: 'Doe' }
-          const payerEmail = event.payerEmail; // 'john.doe@example.com'
-
-          // Extract shipping address
-          const shippingAddress = event.shippingAddress; 
-
-          // Construct billing details
-          const billingDetails = {
-            name: `${payerName.givenName} ${payerName.familyName}`,
-            email: payerEmail,
-            address: {
-              line1: shippingAddress.addressLine[0] || '',
-              line2: shippingAddress.addressLine[1] || '',
-              city: shippingAddress.city || '',
-              state: shippingAddress.region || '',
-              country: shippingAddress.country || '',
-              postal_code: shippingAddress.postalCode || '',
-            },
-          };
-
-              // Prepare data to send to the backend
-              const paymentData = {
-                amount: amount, // Amount in cents
-                currency: 'usd',
-                productId,
-                productTitles: product_title,
-                quantity,
-                shippingAddress: shippingAddress,
-                billingDetails: billingDetails,
-              };
-
-
           // Call backend to create PaymentIntent and get clientSecret
           const { data } = await SERVER_URL.post('/create-payment-intent', {
             amount: amount,       // Amount in cents
             currency: 'usd',
-            productId,
+            variantId:variant_id,
             productTitles: product_title,
             quantity,
           });
@@ -91,11 +56,27 @@ const CheckoutForm = ({ amount = 0.01, productId, product_title, quantity = 1, v
             setMessage(error || 'Payment failed. Please try again.');
             setSuccess(false);
             console.error('Payment failed:', error);
+            alert("Payment Failed");
+            alert(error);
           } else {
             event.complete('success');
             setMessage('Payment successful! Thank you for your purchase.');
             setSuccess(true);
+            alert("Payment SuccessFull");
             // Additional actions on success
+            // Collect additional customer and payment details
+            const customerEmail = event.payerEmail;
+            const customerName = event.payerName;
+            const shippingAddress = event.shippingAddress;
+            const billingAddress = event.paymentMethod.billing_details.address;
+
+            await SERVER_URL.post('/create-shopify-order', {
+              paymentIntentId: data.paymentIntentId,
+              customerEmail,
+              customerName,
+              shippingAddress,
+              billingAddress
+            });
           }
         } catch (error) {
           console.error('Error creating PaymentIntent or confirming payment:', error);
