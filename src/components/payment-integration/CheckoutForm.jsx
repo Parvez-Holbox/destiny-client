@@ -71,7 +71,8 @@ const CheckoutForm = ({ amount = 0.01, productId, product_title, quantity = 1, v
             const billingAddress = event.paymentMethod.billing_details.address;
 
             await SERVER_URL.post('/create-shopify-order', {
-              paymentIntentId: data.paymentIntentId,
+              variant_id,
+              quantity,
               customerEmail,
               customerName,
               shippingAddress,
