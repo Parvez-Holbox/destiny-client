@@ -5,7 +5,8 @@ import ProductPage from './components/product-page';
 import NotFound from './components/not-found';
 
 export default function App() {
-
+  console.log("working");
+  
   return (
     <Router>
         <Routes>
