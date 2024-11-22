@@ -3,7 +3,7 @@ import { useStripe, PaymentRequestButtonElement } from '@stripe/react-stripe-js'
 import axios from 'axios';
 import { SERVER_URL } from '../../helper/constants';
 
-const CheckoutForm = ({ amount = 0.01, productId, product_title, quantity = 1, variant_id = 46075169931421 }) => {
+const CheckoutForm = ({ amount = 0.01, productId, product_title='string', quantity = 1, variant_id = 46075169931421 }) => {
 
   const stripe = useStripe();
   const [paymentRequest, setPaymentRequest] = useState(null);
@@ -29,7 +29,7 @@ const CheckoutForm = ({ amount = 0.01, productId, product_title, quantity = 1, v
         displayItems: [
           {
             label: product_title,
-            amount: amount,
+            amount: amount * 100,
           }
         ],
         shippingOptions: [

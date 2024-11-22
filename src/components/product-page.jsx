@@ -45,10 +45,9 @@ export default function ProductPage() {
         // }
 
 
-        const resp = await PAGE_URL.get(`/get-page-info?page_id=3ffbdd50-2a72-4066-a8ee-ead25762dec9`);
+        const resp = await PAGE_URL.get(`/get-page-info?variant_id=46075169931421`);
+        
         const result = resp.data.result;
-        console.log(PAGE_URL);
-        console.log(pageId);
         
         
         if (result.data === null) {
@@ -74,10 +73,10 @@ export default function ProductPage() {
 
     };
 
-    if (!isValidUUID.test('3ffbdd50-2a72-4066-a8ee-ead25762dec9')) {
-        navigate('/not-found'); // Redirect to "Not Found" page
-        return;
-    }
+    // if (!isValidUUID.test('46075169931421')) {
+    //     navigate('/not-found'); // Redirect to "Not Found" page
+    //     return;
+    // }
 
     setPageDataToSite();
 
