@@ -26,12 +26,6 @@ const CheckoutForm = ({ amount = 0.01, productId, product_title='string', quanti
         requestPayerName: true,
         requestPayerEmail: true,
         requestShipping: true,
-        displayItems: [
-          {
-            label: product_title,
-            amount: amount * 100,
-          }
-        ],
         shippingOptions: [
           // The first shipping option in this list appears as the default
           {
