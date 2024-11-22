@@ -45,7 +45,7 @@ export default function ProductPage() {
         // }
 
 
-        const resp = await PAGE_URL.get(`/get-page-info?page_id=de36400b-cc6a-4d11-9a6a-f8d304e16a56`);
+        const resp = await PAGE_URL.get(`/get-page-info?page_id=3ffbdd50-2a72-4066-a8ee-ead25762dec9`);
         const result = resp.data.result;
         console.log(PAGE_URL);
         console.log(pageId);
@@ -74,7 +74,7 @@ export default function ProductPage() {
 
     };
 
-    if (!isValidUUID.test('de36400b-cc6a-4d11-9a6a-f8d304e16a56')) {
+    if (!isValidUUID.test('3ffbdd50-2a72-4066-a8ee-ead25762dec9')) {
         navigate('/not-found'); // Redirect to "Not Found" page
         return;
     }
