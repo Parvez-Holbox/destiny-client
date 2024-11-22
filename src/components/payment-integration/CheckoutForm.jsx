@@ -26,6 +26,21 @@ const CheckoutForm = ({ amount = 0.01, productId, product_title, quantity = 1, v
         requestPayerName: true,
         requestPayerEmail: true,
         requestShipping: true,
+        displayItems: [
+          {
+            label: product_title,
+            amount: amount,
+          }
+        ],
+        shippingOptions: [
+          // The first shipping option in this list appears as the default
+          {
+            id: 'free-shipping',
+            label: 'Free shipping',
+            detail: 'Arrives in 5 to 7 days',
+            amount: 0,
+          },
+        ],
       });
 
       // Check if Payment Request is available
@@ -53,7 +68,7 @@ const CheckoutForm = ({ amount = 0.01, productId, product_title, quantity = 1, v
           });
           if (error) {
             event.complete('fail');
-            setMessage(error || 'Payment failed. Please try again.');
+            setMessage(error || 'An error occurred during payment. Please try again.');
             setSuccess(false);
             console.error('Payment failed:', error);
             alert("Payment Failed");
@@ -121,7 +136,7 @@ const CheckoutForm = ({ amount = 0.01, productId, product_title, quantity = 1, v
 
     }
 
-  }, [stripe, amount]);
+  }, [stripe, amount, variant_id, product_title, quantity]);
 
   return (
     <div>
